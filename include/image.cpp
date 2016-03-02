@@ -44,3 +44,13 @@ int Image::getNumberLinesImageFile()
 {
 	return numberLinesImageFile;
 }
+
+void Image::setNumberElementsColumnsImageFile(int* numberElementsColumnsImageFile)
+{
+	this->numberElementsColumnsImageFile = numberElementsColumnsImageFile;
+}
+
+int* Image::getNumberElementsColumnsImageFile()
+{
+	return numberElementsColumnsImageFile;
+}
