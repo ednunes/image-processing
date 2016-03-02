@@ -38,7 +38,10 @@ public:
 	int getNumberColumnsHeader();
 	void setNumberColumnsHeader(int numberColumnsHeader);
 
-	
+	int getNumberLinesHeader();
+	void setNumberLinesHeader(int numberLinesHeader);
+
+
 };
 
 #endif

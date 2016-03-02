@@ -17,3 +17,12 @@ int Image::getNumberColumnsHeader()
 {
 	return numberColumnsHeader;
 }
+
+void Image::setNumberLinesHeader(int numberLinesHeader)
+{
+	this->numberLinesHeader = numberLinesHeader;
+}
+int Image::getNumberLinesHeader()
+{
+	return numberLinesHeader;
+}
