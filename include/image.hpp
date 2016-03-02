@@ -44,6 +44,10 @@ public:
 	int getMaxLevelGray();
 	void setMaxLevelGray(int maxLevelGray);
 
+	int getNumberLinesImageFile();
+	void setNumberLinesImageFile(int numberLinesImageFile);
+
+
 };
 
 #endif

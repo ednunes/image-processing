@@ -35,3 +35,12 @@ int Image::getMaxLevelGray()
 {
 	return maxLevelGray;
 }
+
+void Image::setNumberLinesImageFile(int numberLinesImageFile)
+{
+	this->numberLinesImageFile = numberLinesImageFile;
+}
+int Image::getNumberLinesImageFile()
+{
+	return numberLinesImageFile;
+}
