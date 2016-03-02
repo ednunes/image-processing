@@ -25,13 +25,15 @@ private:
 	int* numberElementsColumnsImageFile;
 	// Number of lines in image
 	// Value to be determined by mapping
-	int numberLinesImageFile;
-	 
+	int numberLinesImageFile; 
 	
 public:
-	Image();
+	//Image();
 	//~Image();
 
-
+	std::string getTypeImage();
+	void setTypeImage(std::string typeImage);
 	
 };
+
+#endif
