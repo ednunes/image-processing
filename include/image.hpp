@@ -41,6 +41,8 @@ public:
 	int getNumberLinesHeader();
 	void setNumberLinesHeader(int numberLinesHeader);
 
+	int getMaxLevelGray();
+	void setMaxLevelGray(int maxLevelGray);
 
 };
 

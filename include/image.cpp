@@ -26,3 +26,12 @@ int Image::getNumberLinesHeader()
 {
 	return numberLinesHeader;
 }
+
+void Image::setMaxLevelGray(int maxLevelGray)
+{
+	this->maxLevelGray = maxLevelGray;
+}
+int Image::getMaxLevelGray()
+{
+	return maxLevelGray;
+}
