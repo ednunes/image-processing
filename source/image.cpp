@@ -1,5 +1,14 @@
 #include "image.hpp"
 
+Image::Image(){
+	imageType = "Sem Tipo";
+	numberColumnsHeader = 0;
+	numberLinesHeader = 0;
+	maxLevelGray = 0;
+	numberElementsColumnsImageFile = NULL;
+	numberLinesImageFile = 0; 
+}
+
 void Image::setImageType(std::string imageType)
 {
 	this->imageType = imageType;

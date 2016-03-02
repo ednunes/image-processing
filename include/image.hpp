@@ -28,7 +28,7 @@ private:
 	int numberLinesImageFile; 
 	
 public:
-	//Image();
+	Image();
 	//~Image();
 
 
