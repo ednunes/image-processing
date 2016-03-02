@@ -1,10 +1,19 @@
 #include "image.hpp"
 
-void Image::setTypeImage(std::string typeImage)
+void Image::setImageType(std::string imageType)
 {
-	this->typeImage = typeImage;
+	this->imageType = imageType;
 }
-std::string Image::getTypeImage()
+std::string Image::getImageType()
 {
-	return typeImage;
+	return imageType;
+}
+
+void Image::setNumberColumnsHeader(int numberColumnsHeader)
+{
+	this->numberColumnsHeader = numberColumnsHeader;
+}
+int Image::getNumberColumnsHeader()
+{
+	return numberColumnsHeader;
 }

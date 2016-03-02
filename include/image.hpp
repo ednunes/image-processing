@@ -10,7 +10,7 @@ class Image
 private:
 	// Type that defines the image
 	// Value contained in the header, in first position
-	std::string typeImage;
+	std::string imageType;
 	// Number of columns in image
 	// Value contained in the header, in second position
 	int numberColumnsHeader;
@@ -31,8 +31,13 @@ public:
 	//Image();
 	//~Image();
 
-	std::string getTypeImage();
-	void setTypeImage(std::string typeImage);
+
+	std::string getImageType();
+	void setImageType(std::string imageType);
+	
+	int getNumberColumnsHeader();
+	void setNumberColumnsHeader(int numberColumnsHeader);
+
 	
 };
 
