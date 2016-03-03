@@ -9,6 +9,57 @@ Image::Image(){
 	numberLinesImageFile = 0; 
 }
 
+int Image::getNumberLinesImage(std::fstream &file){
+	
+	std::string text = "Sem texto";
+	int numberLines = 0;
+	
+	while(getline(file, text))
+	{
+		numberLines++;
+	}
+	return numberLines;
+}
+
+int* Image::getNumberElementsPerColumnImage(std::fstream &file, int numberLines)
+{
+	int* numberElementsColumns = new int[numberLines];
+	
+	// Variable for save line string
+	std::string text;
+	// Columns number starts with 1 because it is 0, there is no column
+	int numberColumns = 1;
+	// Its a counter of caracter of string
+	int characterText = 0;
+	// Strtol pointer, marks the end of the integer
+    char* ptr_end = NULL;
+    // Image pixel
+	int elementPixelImage = 0;
+	
+	for (int i = 0; i <= numberLines; ++i)
+	{
+		getline(file, text);
+		
+		elementPixelImage = strtol(text.c_str(), &ptr_end, 10);	
+		
+		do{
+			elementPixelImage = strtol(ptr_end, &ptr_end, 10);		
+			if (elementPixelImage)
+			{	
+				numberColumns++;
+			}
+			characterText++;
+
+		} while(text[characterText]!='\0');
+
+		numberElementsColumns[i] = numberColumns;
+		numberColumns = 1;
+		characterText = 0;
+	}
+
+	return numberElementsColumns;
+}
+
 void Image::readHeader(std::fstream &fileImage){
 	// Variable for save line string
 	std::string text;

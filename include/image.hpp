@@ -53,6 +53,10 @@ public:
 
 // Method for read header 
 	void readHeader(std::fstream &fileImage);
+
+// Read file
+	int getNumberLinesImage(std::fstream &file);
+	int* getNumberElementsPerColumnImage(std::fstream &file, int numberLines);
 };
 
 #endif
