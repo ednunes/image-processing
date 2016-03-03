@@ -51,7 +51,8 @@ public:
 	int* getNumberElementsColumnsImageFile();
 	void setNumberElementsColumnsImageFile(int* numberElementsColumnsImageFile);
 
-
+// Method for read header 
+	void readHeader(std::fstream &fileImage);
 };
 
 #endif
