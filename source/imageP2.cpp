@@ -2,18 +2,6 @@
 
 ImageP2::ImageP2(){}
 
-int ImageP2::getNumberLinesImage(std::fstream &file){
-	
-	std::string text = "Sem texto";
-	int numberLines = 0;
-	
-	while(getline(file, text))
-	{
-		numberLines++;
-	}
-	return numberLines;
-}
-
 int* ImageP2::getNumberElementsPerColumnImage(std::fstream &file, int numberLines, std::string fileName)
 {
 	int* numberElementsColumns = new int[numberLines];

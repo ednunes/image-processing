@@ -60,7 +60,7 @@ public:
 	int* getNumberElementsColumnsImageFile();
 	void setNumberElementsColumnsImageFile(int* numberElementsColumnsImageFile);
 
-
+	int getNumberLinesImage(std::fstream &file);
 };
 
 #endif

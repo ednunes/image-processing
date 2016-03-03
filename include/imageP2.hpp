@@ -9,7 +9,6 @@ public:
 //	~imageP2();
 
 // Read file
-	int getNumberLinesImage(std::fstream &file);
 	int* getNumberElementsPerColumnImage(std::fstream &file, int numberLines, std::string fileName);
 	int** copyImage(std::fstream &file,std::string fileName, Image &img);
 

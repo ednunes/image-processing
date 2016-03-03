@@ -12,7 +12,7 @@ Image::Image(){
 std::string Image::takeNameFile()
 {
 	// Variable for get file name from user
-	std::string fileName = "img/mona.pgm";
+	std::string fileName = "img/Imagem.pgm";
 	std::cout << "Digite o diretorio '/' nome da imagem '.' formato desta: ";
 	//std::cin >> fileName;
 	
@@ -25,7 +25,7 @@ void Image::openImage(std::fstream &file, std::string fileName)
 	
 	 if (file.is_open())
 	 {
-	 
+	 	// Do nothing
 	 } else {
 	 	std::cout << "Erro ao abrir o arquivo" << std::endl;
 	 	exit(1);
@@ -45,7 +45,17 @@ void Image::despisesHeader(std::fstream &file)
 		}
 	}
 }
-
+int Image::getNumberLinesImage(std::fstream &file){
+	
+	std::string text = "Sem texto";
+	int numberLines = 0;
+	
+	while(getline(file, text))
+	{
+		numberLines++;
+	}
+	return numberLines;
+}
 void Image::readHeader(std::fstream &fileImage){
 	// Variable for save line string
 	std::string text;
