@@ -28,7 +28,7 @@ private:
 	int numberLinesImageFile; 
 	
 public:
-	//Image();
+	Image();
 	//~Image();
 
 
@@ -51,7 +51,20 @@ public:
 	int* getNumberElementsColumnsImageFile();
 	void setNumberElementsColumnsImageFile(int* numberElementsColumnsImageFile);
 
+// Method for read header 
+	void readHeader(std::fstream &fileImage);
 
+// Read file
+	int getNumberLinesImage(std::fstream &file);
+	int* getNumberElementsPerColumnImage(std::fstream &file, int numberLines, std::string fileName);
+	int** copyImage(std::fstream &file,std::string fileName);
+	void despisesHeader(std::fstream &file);
+
+// Write in file
+	void writeImage(int** pixeisImage);
+
+	std::string takeNameFile();
+	void openImage(std::fstream &file, std::string nameFile);
 };
 
 #endif
