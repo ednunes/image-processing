@@ -110,7 +110,6 @@ void Image::writeImage(int** pixeisImage){
 	outfile << getMaxLevelGray() << std::endl;
 	
 	int* numberElementsColumns = getNumberElementsColumnsImageFile();
- 	std::cout << numberElementsColumns[0] << " " << numberElementsColumns[1] << std::endl;
  	for (int i = 0; i <= getNumberLinesImageFile(); ++i)
  	{
  		for (int j = 0; j < numberElementsColumns[i]; ++j)

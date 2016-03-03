@@ -27,11 +27,6 @@ private:
 // Value to be determined by mapping
 	int numberLinesImageFile; 
 	
-public:
-	Image();
-	//~Image();
-
-
 // Gets and sets methods 
 	std::string getImageType();
 	void setImageType(std::string imageType);
@@ -51,14 +46,20 @@ public:
 	int* getNumberElementsColumnsImageFile();
 	void setNumberElementsColumnsImageFile(int* numberElementsColumnsImageFile);
 
-// Method for read header 
+// Despeses header lines
+	void despisesHeader(std::fstream &file);
+
+public:
+	Image();
+	//~Image();
+
+// Method for read header, stores the data in Image object 
 	void readHeader(std::fstream &fileImage);
 
 // Read file
 	int getNumberLinesImage(std::fstream &file);
 	int* getNumberElementsPerColumnImage(std::fstream &file, int numberLines, std::string fileName);
 	int** copyImage(std::fstream &file,std::string fileName);
-	void despisesHeader(std::fstream &file);
 
 // Write in file
 	void writeImage(int** pixeisImage);
