@@ -6,6 +6,8 @@
 #include "image.hpp"
 #include "imageP2.hpp"
 #include "imageP5.hpp"
+#include "filter.hpp"
+#include "negative_filter.hpp"
 
 int main(int argc, char const *argv[])
 {
@@ -17,24 +19,8 @@ int main(int argc, char const *argv[])
 	img.readHeader(fileImage);
 	int num = img.getNumberLinesImage(fileImage);
 	img.setNumberLinesImageFile(num);
-	
-	// std::cout << img.getImageType() << std::endl;
- 	
-  	std::string text = img.getImageType();
-	std::cout << text.c_str() << std::endl;
-	text.c_str();
-  	int teste = 0;
- 	int characterText = 0;
-	do{
-	 	std::cout << text[characterText] << " ";
-	 	teste = text[characterText];
-	 	std::cout << teste << std::endl;
-	 	
-	 	characterText++;
-	} while(text[characterText]!='\0');
 
-	 
-
+	NegativeFilter negFilter;
  	if (img.getImageType() == "P5")
 	{
 		ImageP5 imgP5;
@@ -42,24 +28,28 @@ int main(int argc, char const *argv[])
 		img.setNumberElementsColumnsImageFile(v);
 		unsigned char** matrixImage = NULL;
 		matrixImage = imgP5.copyImage(fileImage,fileName,img);
-		imgP5.writeImage(matrixImage, img);
+		imgP5.writeImage(matrixImage, img, "copyP5.pgm");
 	
+		matrixImage = negFilter.applyNegativeFilter(matrixImage,v,num,img.getMaxGrayLevel());
+		imgP5.writeImage(matrixImage, img, "negativep5.pgm");
+		
 	} else if (img.getImageType() == "P2\r" || img.getImageType() == "P2")
 	{
-		std::cout << "Entrou!!!" << std::endl;
-
 		ImageP2 imgP2;
 		int* v = imgP2.getNumberElementsPerColumnImage(fileImage,num,fileName);
 		img.setNumberElementsColumnsImageFile(v);
 		int** matrixImage = NULL;
 		matrixImage = imgP2.copyImage(fileImage,fileName,img);
-		imgP2.writeImage(matrixImage, img);
+		imgP2.writeImage(matrixImage, img, "copy1.pgm");
+
+		matrixImage = negFilter.applyNegativeFilter(matrixImage,v,num,img.getMaxGrayLevel());
+		imgP2.writeImage(matrixImage, img, "negative1.pgm");
 	
 	} else {
-	 	std::cout << "Formato de imagem " << img.getImageType() << std::endl;
+	 	std::cout << "Formato de imagem: " << img.getImageType() << ", desconhecido!!!" << std::endl;
 	}
 
-	//std::cout << "Deu certo!!! " << std::endl;
+	std::cout << "Deu certo!!!" << std::endl;
 
 	fileImage.close();
 	return 0;

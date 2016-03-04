@@ -13,7 +13,7 @@ public:
 	unsigned char** copyImage(std::fstream &file,std::string fileName, Image &img);
 
 // Write in file
-	void writeImage(unsigned char** pixeisImage, Image &img);
+	void writeImage(unsigned char** imagePixeis, Image &img, const char* outfileName);
 
 };
 
