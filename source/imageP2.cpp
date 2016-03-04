@@ -46,19 +46,19 @@ int* ImageP2::getNumberElementsPerColumnImage(std::fstream &file, int numberLine
 	return numberElementsColumns;
 }
 
-void ImageP2::writeImage(int** pixeisImage, Image &img){
-	std::ofstream outfile("copy.pgm");
+void ImageP2::writeImage(int** imagePixeis, Image &img, const char* outfileName){
+	std::ofstream outfile(outfileName);
 
 	outfile << img.getImageType() << std::endl;
 	outfile << img.getNumberColumnsHeader() << " " << img.getNumberLinesHeader() << std::endl;
-	outfile << img.getMaxLevelGray() << std::endl;
+	outfile << img.getMaxGrayLevel() << std::endl;
 	
 	int* numberElementsColumns = img.getNumberElementsColumnsImageFile();
  	for (int i = 0; i <= img.getNumberLinesImageFile(); ++i)
  	{
  		for (int j = 0; j < numberElementsColumns[i]; ++j)
  		{
- 			outfile << pixeisImage[i][j] << " ";
+ 			outfile << imagePixeis[i][j] << " ";
 		}
 		outfile << std::endl;
  	}

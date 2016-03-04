@@ -20,7 +20,7 @@ private:
 	int numberLinesHeader;
 // Number of max level in image
 // Value contained in the header in fourth position
-	int maxLevelGray;
+	int maxGrayLevel;
 // Number of columns in image file
 // Value to be determined by mapping
 	int* numberElementsColumnsImageFile;
@@ -49,8 +49,8 @@ public:
 	int getNumberLinesHeader();
 	void setNumberLinesHeader(int numberLinesHeader);
 
-	int getMaxLevelGray();
-	void setMaxLevelGray(int maxLevelGray);
+	int getMaxGrayLevel();
+	void setMaxGrayLevel(int maxGrayLevel);
 
 // Despeses header lines
 	void despisesHeader(std::fstream &file);

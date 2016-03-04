@@ -4,7 +4,7 @@ Image::Image(){
 	imageType = "Sem Tipo";
 	numberColumnsHeader = 0;
 	numberLinesHeader = 0;
-	maxLevelGray = 0;
+	maxGrayLevel = 0;
 	numberElementsColumnsImageFile = NULL;
 	numberLinesImageFile = 0; 
 }
@@ -17,8 +17,8 @@ std::string Image::takeNameFile()
 	std::cin >> fileName;
 
 	// Clean buffer
-	//char c;
-	//while ((c = getchar()) != '\n' && c != EOF);
+	char c;
+	while ((c = getchar()) != '\n' && c != EOF);
 	
 	return fileName;
 }
@@ -91,8 +91,8 @@ void Image::readHeader(std::fstream &fileImage){
 		
 		// Read max level gray
 		getline(fileImage,text);
-		int maxLevelGray = strtol(text.c_str(),&ptr_end,10);
-		setMaxLevelGray(maxLevelGray);
+		int maxGrayLevel = strtol(text.c_str(),&ptr_end,10);
+		setMaxGrayLevel(maxGrayLevel);
 	
 	} else {
 		std::cout << "Erro ao ler o cabecalho, formato desconhecido!!!" << std::endl;
@@ -126,13 +126,13 @@ int Image::getNumberLinesHeader()
 	return numberLinesHeader;
 }
 
-void Image::setMaxLevelGray(int maxLevelGray)
+void Image::setMaxGrayLevel(int maxGrayLevel)
 {
-	this->maxLevelGray = maxLevelGray;
+	this->maxGrayLevel = maxGrayLevel;
 }
-int Image::getMaxLevelGray()
+int Image::getMaxGrayLevel()
 {
-	return maxLevelGray;
+	return maxGrayLevel;
 }
 
 void Image::setNumberLinesImageFile(int numberLinesImageFile)
