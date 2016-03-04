@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 #include <stdlib.h>
+#include <stdio.h>
 
 class Image
 {
@@ -26,7 +27,18 @@ private:
 // Number of lines in image
 // Value to be determined by mapping
 	int numberLinesImageFile; 
-	
+
+public:
+	Image();
+	//~Image();
+
+// Method for read header, stores the data in Image object 
+	void readHeader(std::fstream &fileImage);
+
+// Methods for ImageFile
+	std::string takeNameFile();
+	void openImage(std::fstream &file, std::string nameFile);
+
 // Gets and sets methods 
 	std::string getImageType();
 	void setImageType(std::string imageType);
@@ -40,32 +52,16 @@ private:
 	int getMaxLevelGray();
 	void setMaxLevelGray(int maxLevelGray);
 
+// Despeses header lines
+	void despisesHeader(std::fstream &file);
+
 	int getNumberLinesImageFile();
 	void setNumberLinesImageFile(int numberLinesImageFile);
 
 	int* getNumberElementsColumnsImageFile();
 	void setNumberElementsColumnsImageFile(int* numberElementsColumnsImageFile);
 
-// Despeses header lines
-	void despisesHeader(std::fstream &file);
-
-public:
-	Image();
-	//~Image();
-
-// Method for read header, stores the data in Image object 
-	void readHeader(std::fstream &fileImage);
-
-// Read file
 	int getNumberLinesImage(std::fstream &file);
-	int* getNumberElementsPerColumnImage(std::fstream &file, int numberLines, std::string fileName);
-	int** copyImage(std::fstream &file,std::string fileName);
-
-// Write in file
-	void writeImage(int** pixeisImage);
-
-	std::string takeNameFile();
-	void openImage(std::fstream &file, std::string nameFile);
 };
 
 #endif
