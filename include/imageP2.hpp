@@ -14,8 +14,6 @@ public:
 
 // Write in file
 	void writeImage(int** pixeisImage, Image &img);
-
 };
-
 
 #endif

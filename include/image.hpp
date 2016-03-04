@@ -4,10 +4,11 @@
 #include <string>
 #include <fstream>
 #include <stdlib.h>
+#include <stdio.h>
 
 class Image
 {
-protected:
+private:
 // Type that defines the image
 // Value contained in the header, in first position
 	std::string imageType;

@@ -34,13 +34,8 @@ void ImageP5::writeImage(unsigned char** pixeisImage, Image &img){
 	std::ofstream outfile("copy.pgm");
 
 	outfile << img.getImageType() << std::endl;
-	std::cout << img.getImageType() << std::endl;
-
 	outfile << img.getNumberColumnsHeader() << " " << img.getNumberLinesHeader() << std::endl;
-	std::cout << img.getNumberColumnsHeader() << " " << img.getNumberLinesHeader() << std::endl;
-
 	outfile << img.getMaxLevelGray() << std::endl;
-	std::cout << img.getMaxLevelGray() << std::endl;
 	
 	int* numberElementsColumns = img.getNumberElementsColumnsImageFile();
  	int numberLines = img.getNumberLinesImageFile();
