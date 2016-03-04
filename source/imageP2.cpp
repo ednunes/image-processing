@@ -14,29 +14,30 @@ int* ImageP2::getNumberElementsPerColumnImage(std::fstream &file, int numberLine
 	int characterText = 0;
 	// Strtol pointer, marks the end of the integer
     char* ptr_end = NULL;
-    // Image pixel
-	int elementPixelImage = 0;
 
 	file.close();
 	openImage(file,fileName);
 
 	despisesHeader(file);
-	
+
 	for (int i = 0; i < numberLines; ++i)
 	{
-		getline(file, text);
-		elementPixelImage = strtol(text.c_str(), &ptr_end, 10);	
-	
+		getline(file, text);		
+		strtol(text.c_str(), &ptr_end, 10);	
 		do{
-			elementPixelImage = strtol(ptr_end, &ptr_end, 10);		
-			if (elementPixelImage)
-			{	
+			if (text[characterText]!=' ' && text[characterText+1]==' ')
+			{
+				strtol(ptr_end, &ptr_end, 10);		
+
 				numberColumns++;
+				characterText++;
+
+			} else {
+				ptr_end = (ptr_end+1);
+				characterText++;
+				
 			}
-			characterText++;
-
 		} while(text[characterText]!='\0');
-
 		
 		numberElementsColumns[i] = numberColumns;
 		numberColumns = 1;
@@ -54,7 +55,7 @@ void ImageP2::writeImage(int** imagePixeis, Image &img, const char* outfileName)
 	outfile << img.getMaxGrayLevel() << std::endl;
 	
 	int* numberElementsColumns = img.getNumberElementsColumnsImageFile();
- 	for (int i = 0; i <= img.getNumberLinesImageFile(); ++i)
+ 	for (int i = 0; i < img.getNumberLinesImageFile(); ++i)
  	{
  		for (int j = 0; j < numberElementsColumns[i]; ++j)
  		{

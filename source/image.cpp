@@ -12,13 +12,13 @@ Image::Image(){
 std::string Image::takeNameFile()
 {
 	// Variable for get file name from user
-	std::string fileName;
-	std::cout << "Digite o diretorio '/' nome da imagem '.' formato desta: ";
-	std::cin >> fileName;
+	std::string fileName = "img/tele.pgm";
+	//std::cout << "Digite o diretorio '/' nome da imagem '.' formato desta: ";
+	//std::cin >> fileName;
 
 	// Clean buffer
-	char c;
-	while ((c = getchar()) != '\n' && c != EOF);
+	//char c;
+	//while ((c = getchar()) != '\n' && c != EOF);
 	
 	return fileName;
 }
