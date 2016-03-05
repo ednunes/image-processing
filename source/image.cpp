@@ -23,6 +23,67 @@ std::string Image::takeNameFile()
 	return fileName;
 }
 
+
+int* Image::getNumberElementsPerColumnImage(std::fstream &file, int numberLines, std::string fileName)
+{
+	int* numberElementsColumns = new int[numberLines];
+	
+	// Columns number starts with 1 because it is 0, there is no column
+	int numberColumns = 1;
+	// Its a counter of caracter of string
+	int characterText = 0;
+   
+	file.close();
+	openImage(file,fileName);
+
+	despisesHeader(file);
+	if (getImageType() == "P2\r" || getImageType() == "P2")
+	{
+		for (int i = 0; i < numberLines; ++i)
+		{
+			// Variable for save line string
+			std::string text;
+
+			getline(file, text);		
+			do{
+				// Some images have two spaces between the elements so if this will cause it to recognize the spaces and ignore them
+				// And causes them do not count the number of columns.
+				// Some of these images is to the end of the string '\r'
+				// This in consequence would eventually count another value in the amount of lines, because this last term in if this will not happen
+				if ((text[characterText]!=' ' && text[characterText+1]==' ') && text[characterText+2]!='\r')
+				{
+					numberColumns++;
+					characterText++;	
+				}
+				 else {
+					characterText++;
+				}
+			} while(text[characterText]!='\0');
+			
+			numberElementsColumns[i] = numberColumns;
+			numberColumns = 1;
+			characterText = 0;
+		}
+	}
+	if (getImageType() == "P5"){
+		for (int i = 0; i < numberLines; ++i)
+		{
+			// Variable for save line string
+			std::string text;
+			getline(file, text);
+			do
+			{
+				numberColumns++;
+			} while(text[numberColumns]!='\0');
+		
+			numberElementsColumns[i] = numberColumns;
+			numberColumns = 0;
+		}
+	}
+	return numberElementsColumns;
+}
+
+
 void Image::openImage(std::fstream &file, std::string fileName)
 {
 	 file.open(fileName.c_str());

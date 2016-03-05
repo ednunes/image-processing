@@ -2,34 +2,6 @@
 
 ImageP5::ImageP5(){}
 
-int* ImageP5::getNumberElementsPerColumnImage(std::fstream &file, int numberLines, std::string fileName)
-{
-	int* numberElementsColumns = new int[numberLines];
-	
-	// Variable for save line string
-	std::string text;
-	// Columns number starts with 1 because it is 0, there is no column
-	int numberColumns = 1;
-   
-	file.close();
-	openImage(file,fileName);
-
-	despisesHeader(file);
-	
-	for (int i = 0; i < numberLines; ++i)
-	{
-		getline(file, text);
-		do
-		{
-			numberColumns++;
-		} while(text[numberColumns]!='\0');
-	
-		numberElementsColumns[i] = numberColumns;
-		numberColumns = 0;
-	}
-	return numberElementsColumns;
-}
-
 void ImageP5::writeImage(unsigned char** imagePixeis, Image &img, const char* outfileName){
 	std::ofstream outfile(outfileName);
 

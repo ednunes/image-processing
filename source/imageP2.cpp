@@ -2,49 +2,6 @@
 
 ImageP2::ImageP2(){}
 
-int* ImageP2::getNumberElementsPerColumnImage(std::fstream &file, int numberLines, std::string fileName)
-{
-	int* numberElementsColumns = new int[numberLines];
-	
-	// Variable for save line string
-	std::string text;
-	// Columns number starts with 1 because it is 0, there is no column
-	int numberColumns = 1;
-	// Its a counter of caracter of string
-	int characterText = 0;
-
-	file.close();
-	openImage(file,fileName);
-
-	despisesHeader(file);
-
-	for (int i = 0; i < numberLines; ++i)
-	{
-		getline(file, text);		
-		//strtol(text.c_str(), &ptr_end, 10);	
-		do{
-			// Some images have two spaces between the elements so if this will cause it to recognize the spaces and ignore them
-			// And causes them do not count the number of columns.
-			// Some of these images is to the end of the string '\r'
-			// This in consequence would eventually count another value in the amount of lines, because this last term in if this will not happen
-			if ((text[characterText]!=' ' && text[characterText+1]==' ') && text[characterText+2]!='\r')
-			{
-				numberColumns++;
-				characterText++;	
-			}
-			 else {
-				characterText++;
-			}
-		} while(text[characterText]!='\0');
-		
-		numberElementsColumns[i] = numberColumns;
-		numberColumns = 1;
-		characterText = 0;
-	}
-
-	return numberElementsColumns;
-}
-
 void ImageP2::writeImage(int** imagePixeis, Image &img, const char* outfileName){
 	std::ofstream outfile(outfileName);
 

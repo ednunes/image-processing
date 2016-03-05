@@ -24,7 +24,7 @@ int main(int argc, char const *argv[])
  	if (img.getImageType() == "P5")
 	{
 		ImageP5 imgP5;
-		int* v = imgP5.getNumberElementsPerColumnImage(fileImage,num,fileName);
+		int* v = img.getNumberElementsPerColumnImage(fileImage,num,fileName);
 		img.setNumberElementsColumnsImageFile(v);
 		unsigned char** matrixImage = NULL;
 		matrixImage = imgP5.copyImage(fileImage,fileName,img);
@@ -36,7 +36,7 @@ int main(int argc, char const *argv[])
 	} else if (img.getImageType() == "P2\r" || img.getImageType() == "P2")
 	{
 		ImageP2 imgP2;
-		int* v = imgP2.getNumberElementsPerColumnImage(fileImage,num,fileName);
+		int* v = img.getNumberElementsPerColumnImage(fileImage,num,fileName);
 		img.setNumberElementsColumnsImageFile(v);
 		int** matrixImage = NULL;
 		matrixImage = imgP2.copyImage(fileImage,fileName,img);

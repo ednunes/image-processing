@@ -62,6 +62,8 @@ public:
 	void setNumberElementsColumnsImageFile(int* numberElementsColumnsImageFile);
 
 	int getNumberLinesImage(std::fstream &file);
+	int* getNumberElementsPerColumnImage(std::fstream &file, int numberLines, std::string fileName);
+	
 };
 
 #endif
