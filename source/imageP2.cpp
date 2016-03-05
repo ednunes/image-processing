@@ -12,8 +12,6 @@ int* ImageP2::getNumberElementsPerColumnImage(std::fstream &file, int numberLine
 	int numberColumns = 1;
 	// Its a counter of caracter of string
 	int characterText = 0;
-	// Strtol pointer, marks the end of the integer
-    char* ptr_end = NULL;
 
 	file.close();
 	openImage(file,fileName);
@@ -23,19 +21,19 @@ int* ImageP2::getNumberElementsPerColumnImage(std::fstream &file, int numberLine
 	for (int i = 0; i < numberLines; ++i)
 	{
 		getline(file, text);		
-		strtol(text.c_str(), &ptr_end, 10);	
+		//strtol(text.c_str(), &ptr_end, 10);	
 		do{
-			if (text[characterText]!=' ' && text[characterText+1]==' ')
+			// Some images have two spaces between the elements so if this will cause it to recognize the spaces and ignore them
+			// And causes them do not count the number of columns.
+			// Some of these images is to the end of the string '\r'
+			// This in consequence would eventually count another value in the amount of lines, because this last term in if this will not happen
+			if ((text[characterText]!=' ' && text[characterText+1]==' ') && text[characterText+2]!='\r')
 			{
-				strtol(ptr_end, &ptr_end, 10);		
-
 				numberColumns++;
+				characterText++;	
+			}
+			 else {
 				characterText++;
-
-			} else {
-				ptr_end = (ptr_end+1);
-				characterText++;
-				
 			}
 		} while(text[characterText]!='\0');
 		
