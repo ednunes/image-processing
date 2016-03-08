@@ -13,14 +13,14 @@ std::string Image::takeNameFile()
 {
 	// Variable for get file name from user
 	std::string fileName;
-	std::cout << "Digite o diretorio '/' nome da imagem '.' formato desta: ";
-	std::cin >> fileName;
+	//std::cout << "Digite o diretorio '/' nome da imagem '.' formato desta: ";
+	//std::cin >> fileName;
 
 	// Clean buffer
-	char c;
-	while ((c = getchar()) != '\n' && c != EOF);
+	//char c;
+	//while ((c = getchar()) != '\n' && c != EOF);
 	
-	return fileName;
+	return "img/oi.pbm";
 }
 
 
@@ -36,8 +36,8 @@ int* Image::getNumberElementsPerColumnImage(std::fstream &file, int numberLines,
 	file.close();
 	openImage(file,fileName);
 
-	despisesHeader(file);
-	if (getImageType() == "P2\r" || getImageType() == "P2")
+	despisesHeader(file,getImageType());
+	if (getImageType() == "P2\r" or getImageType() == "P2" or getImageType() == "P1" or getImageType() == "P1\r")
 	{
 		for (int i = 0; i < numberLines; ++i)
 		{
@@ -48,12 +48,12 @@ int* Image::getNumberElementsPerColumnImage(std::fstream &file, int numberLines,
 			do{
 				// Some images have two spaces between the elements so if this will cause it to recognize the spaces and ignore them
 				// And causes them do not count the number of columns.
-				// Some of these images is to the end of the string '\r'
+				// Some of these images is to the end of the string '\r' or '\0'
 				// This in consequence would eventually count another value in the amount of lines, because this last term in if this will not happen
-				if ((text[characterText]!=' ' && text[characterText+1]==' ') && text[characterText+2]!='\r')
+				if ((text[characterText]!=' ' and text[characterText+1]==' ') and (text[characterText+2]!='\0' and text[characterText+2]!='\r'))
 				{
 					numberColumns++;
-					characterText++;	
+					characterText++;
 				}
 				 else {
 					characterText++;
@@ -97,10 +97,19 @@ void Image::openImage(std::fstream &file, std::string fileName)
 	 }
 }
 
-void Image::despisesHeader(std::fstream &file)
+void Image::despisesHeader(std::fstream &file, std::string imageType)
 {
 	std::string text;
-	const int numberLinesOfHeader = 3;
+	int numberLinesOfHeader = 0;
+	if (imageType != "P1")
+	{
+		numberLinesOfHeader = 3;
+	} else {
+		numberLinesOfHeader = 2;
+	
+	}
+	std::cout << "numberLinesOfHeader " << numberLinesOfHeader << " "<< imageType << std::endl;
+	 	
 	for (int iii = 0; iii < numberLinesOfHeader; ++iii)
 	{
 		getline(file,text);
@@ -119,6 +128,7 @@ int Image::getNumberLinesImage(std::fstream &file){
 	{
 		numberLines++;
 	}
+	std::cout << numberLines << std::endl;
 	return numberLines;
 }
 void Image::readHeader(std::fstream &fileImage){
@@ -150,11 +160,13 @@ void Image::readHeader(std::fstream &fileImage){
 		int numberLinesImage = strtol(ptr_end,&ptr_end,10);
 		setNumberLinesHeader(numberLinesImage);
 		
-		// Read max level gray
-		getline(fileImage,text);
-		int maxGrayLevel = strtol(text.c_str(),&ptr_end,10);
-		setMaxGrayLevel(maxGrayLevel);
-	
+		if (getImageType()!="P1")
+		{
+			// Read max level gray
+			getline(fileImage,text);
+			int maxGrayLevel = strtol(text.c_str(),&ptr_end,10);
+			setMaxGrayLevel(maxGrayLevel);
+		}
 	} else {
 		std::cout << "Erro ao ler o cabecalho, formato desconhecido!!!" << std::endl;
 	}

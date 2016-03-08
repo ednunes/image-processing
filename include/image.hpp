@@ -53,7 +53,7 @@ public:
 	void setMaxGrayLevel(int maxGrayLevel);
 
 // Despeses header lines
-	void despisesHeader(std::fstream &file);
+	void despisesHeader(std::fstream &file, std::string imageType);
 
 	int getNumberLinesImageFile();
 	void setNumberLinesImageFile(int numberLinesImageFile);

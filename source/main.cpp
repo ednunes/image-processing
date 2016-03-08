@@ -6,6 +6,7 @@
 #include "image.hpp"
 #include "imageP2.hpp"
 #include "imageP5.hpp"
+#include "imageP1.hpp"
 #include "filter.hpp"
 #include "negative_filter.hpp"
 
@@ -44,6 +45,18 @@ int main(int argc, char const *argv[])
 
 		matrixImage = negFilter.applyNegativeFilter(matrixImage,v,num,img.getMaxGrayLevel());
 		imgP2.writeImage(matrixImage, img, "negative1.pgm");
+	
+	} else if (img.getImageType() == "P1\r" || img.getImageType() == "P1")
+	{
+		ImageP1 imgP1;
+		int* v = img.getNumberElementsPerColumnImage(fileImage,num,fileName);
+		img.setNumberElementsColumnsImageFile(v);
+		int** matrixImage = NULL;
+		matrixImage = imgP1.copyImage(fileImage,fileName,img);
+		imgP1.writeImage(matrixImage, img, "copy1.pgm");
+
+		matrixImage = negFilter.applyNegativeFilter(matrixImage,v,num);
+		imgP1.writeImage(matrixImage, img, "negative1.pgm");
 	
 	} else {
 	 	std::cout << "Formato de imagem: " << img.getImageType() << ", desconhecido!!!" << std::endl;

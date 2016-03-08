@@ -11,6 +11,7 @@ class NegativeFilter : Filter
 public:
 	int** applyNegativeFilter(int** image, int* numberElementsColumns, int numberLines, int maxGrayLevel);
 	unsigned char** applyNegativeFilter(unsigned char** image, int* numberElementsColumns, int numberLines, int maxGrayLevel);
+	int** applyNegativeFilter(int** image, int* numberElementsColumns, int numberLines);
 };
 
 #endif

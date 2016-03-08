@@ -1,13 +1,12 @@
-#include "imageP2.hpp"
+#include "imageP1.hpp"
 
-ImageP2::ImageP2(){}
+ImageP1::ImageP1(){}
 
-void ImageP2::writeImage(int** imagePixeis, Image &img, const char* outfileName){
+void ImageP1::writeImage(int** imagePixeis, Image &img, const char* outfileName){
 	std::ofstream outfile(outfileName);
 
 	outfile << img.getImageType() << std::endl;
 	outfile << img.getNumberColumnsHeader() << " " << img.getNumberLinesHeader() << std::endl;
-	outfile << img.getMaxGrayLevel() << std::endl;
 	
 	int* numberElementsColumns = img.getNumberElementsColumnsImageFile();
  	for (int i = 0; i < img.getNumberLinesImageFile(); ++i)
@@ -21,7 +20,7 @@ void ImageP2::writeImage(int** imagePixeis, Image &img, const char* outfileName)
  	outfile.close();
 }
 
-int** ImageP2::copyImage(std::fstream &file, std::string fileName, Image &img){
+int** ImageP1::copyImage(std::fstream &file, std::string fileName, Image &img){
 	file.close();
 	openImage(file,fileName);
 

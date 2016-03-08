@@ -25,7 +25,7 @@ unsigned char** ImageP5::copyImage(std::fstream &file, std::string fileName, Ima
 	file.close();
 	openImage(file,fileName);
 
-	despisesHeader(file);
+	despisesHeader(file,img.getImageType());
 
 	int numberLines = img.getNumberLinesImageFile();
 
